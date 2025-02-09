@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<style>
+    /* CSS for the dialog box */
+    .dialog {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        overflow: auto;
+    }
+
+    .dialog-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+</style>
+
+<head>
+    <title>Log In | TeamSync</title>
+    <link rel="stylesheet" type="text/css" href="stylelogin.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>TeamSync</h1>
+            <ul id="navli">
+                <li><a class="homeblack" href="index.html">HOME</a></li>
+                <li><a class="homeblack" href="elogin.html">Employee Login</a></li>
+                <li><a class="homered" href="alogin.html">Admin Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="divider"></div>
+
+    <div class="loginbox">
+        <img src="assets/admin.png" class="avatar">
+        <h1>Login Here</h1>
+        <form action="process/aprocess.php" method="POST">
+            <p>Username</p>
+            <input type="text" name="mailuid" placeholder="Enter Email Address" required="required">
+            <p>Password</p>
+            <input type="password" name="pwd" placeholder="Enter Password" required="required">
+            <input type="submit" name="login-submit" value="Login">
+            <a href="#" id="forgot-password">Forgot Password?</a>
+        </form>
+    </div>
+
+    <!-- Dialog Box -->
+    <div id="forgot-password-dialog" class="dialog">
+        <div class="dialog-content">
+            <span class="close">&times;</span>
+            <h2>Create New Password</h2>
+            <form id="create-password-form">
+                <p>Enter your new password:</p>
+                <input type="password" name="new-password" required>
+                <input type="submit" value="Save Password">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for handling the dialog box
+        const forgotPasswordLink = document.getElementById('forgot-password');
+        const dialog = document.getElementById('forgot-password-dialog');
+        const closeBtn = dialog.querySelector('.close');
+
+        forgotPasswordLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            dialog.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', function() {
+            dialog.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
